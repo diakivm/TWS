@@ -18,7 +18,7 @@ namespace TWS.DataAccessLayer.Date.Repositories
         {
         }
 
-        public async Task<IEnumerable<DriverAccount>> GetDriverAccountsByDrivingExperience(double drivingExperience)
+        public async Task<IEnumerable<DriverAccount>> GetDriverAccountsByDrivingExperienceAsync(double drivingExperience)
         {
             return await this._table.Where(d => d.DriverExperience >= drivingExperience)
                                     .Include(u => u.UserAccount)
@@ -27,7 +27,7 @@ namespace TWS.DataAccessLayer.Date.Repositories
                                     .ToListAsync();
         }
 
-        public async Task<IEnumerable<DriverAccount>> GetDriverAccountsByCarBrand(string carBrand)
+        public async Task<IEnumerable<DriverAccount>> GetDriverAccountsByCarBrandAsync(string carBrand)
         {
 
             return await this._table.Where(c => c.Transport.CarBrand == carBrand)
@@ -36,7 +36,7 @@ namespace TWS.DataAccessLayer.Date.Repositories
                                     .ToListAsync();
         }
 
-        public async Task<IEnumerable<DriverAccount>> GetDriverAccountsBySeetsOfCar(int neededFreeSeets)
+        public async Task<IEnumerable<DriverAccount>> GetDriverAccountsBySeetsOfCarAsync(int neededFreeSeets)
         {
             return await this._table.Where(t => t.Transport.NumberOfSeats >= neededFreeSeets)
                                     .Include(t => t.Transport)
@@ -44,12 +44,13 @@ namespace TWS.DataAccessLayer.Date.Repositories
                                     .ToListAsync();
         }
 
-        public async Task<IEnumerable<DriverAccount>> GetAllTripOfDriverAccount(int idDrivingAccount)
+        public async Task<DriverAccount> GetDriverAccountByTripAsync(Trip trip)
         {
-            return await this._table.Where(d => d.Id == idDrivingAccount)
+            return await this._table.Where(d => d.PublishedTrips.Contains(trip))
                                    .Include(u => u.UserAccount)
+                                   .Include(t => t.Transport)
                                    .Include(t => t.PublishedTrips)
-                                   .ToListAsync();
+                                   .FirstOrDefaultAsync();
         }
     }
 }

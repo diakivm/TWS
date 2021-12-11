@@ -17,7 +17,7 @@ namespace TWS.DataAccessLayer.Date.Repositories
         {
         }
 
-        public async Task<IEnumerable<TravelerAccount>> GetTravelersAccountByTrip(Trip trip)
+        public async Task<IEnumerable<TravelerAccount>> GetTravelersAccountByTripAsync(Trip trip)
         {
             return await this._table.Where(p => p.PlannedTrips.Contains(trip))
                                     .Include(u => u.UserAccount)

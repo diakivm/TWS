@@ -36,9 +36,8 @@ using (var db = new TWSDBContext(options))
 
     Console.WriteLine("==============================================================");
 
-    var asd = unitOfWork.DriverAccountRepository.GetDriverAccountsBySeets(2);
+    var asd = unitOfWork.DriverAccountRepository.GetDriverAccountsBySeetsOfCarAsync(2);
 
     foreach (var item in asd.Result)
-        Console.WriteLine($"{item.DriverExperience} {item.UserAccount?.FirstName} {item.Transport.CarBrand}");
-
+        Console.WriteLine($"{item.DriverExperience} {item.UserAccount.FirstName} {item.Transport.CarBrand}");
 }

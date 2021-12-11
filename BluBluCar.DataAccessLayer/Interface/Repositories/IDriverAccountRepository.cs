@@ -9,9 +9,9 @@ namespace TWS.DataAccessLayer.Interface.Repositories
 {
     public interface IDriverAccountRepository : IRepository<DriverAccount>
     {
-        Task<IEnumerable<DriverAccount>> GetDriverAccountsByDrivingExperience(double drivingExperience);
-        Task<IEnumerable<DriverAccount>> GetDriverAccountsByCarBrand(string carBrand);
-        Task<IEnumerable<DriverAccount>> GetDriverAccountsBySeetsOfCar(int neededFreeSeets);
-        Task<IEnumerable<DriverAccount>> GetAllTripOfDriverAccount(int idDrivingAccount);
+        Task<IEnumerable<DriverAccount>> GetDriverAccountsByDrivingExperienceAsync(double drivingExperience);
+        Task<IEnumerable<DriverAccount>> GetDriverAccountsByCarBrandAsync(string carBrand);
+        Task<IEnumerable<DriverAccount>> GetDriverAccountsBySeetsOfCarAsync(int neededFreeSeets);
+        Task<DriverAccount> GetDriverAccountByTripAsync(Trip trip);
     }
 }
