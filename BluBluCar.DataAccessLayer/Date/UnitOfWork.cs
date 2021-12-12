@@ -14,13 +14,13 @@ namespace TWS.DataAccessLayer.Date
     {
         readonly TWSDBContext context;
 
-        public ITripsRepository TripsRepository { get;}
+        public ITripRepository TripsRepository { get;}
         public ITravelerAccountRepository TravelerAccountRepository { get;}
         public IDriverAccountRepository DriverAccountRepository { get;}
 
         public async Task SaveChangesAsync() => await context.SaveChangesAsync();
 
-        public UnitOfWork(TWSDBContext context, ITripsRepository tripsRepository, ITravelerAccountRepository travelerAccountRepository, IDriverAccountRepository driverAccountRepository)
+        public UnitOfWork(TWSDBContext context, ITripRepository tripsRepository, ITravelerAccountRepository travelerAccountRepository, IDriverAccountRepository driverAccountRepository)
         {
             this.context = context;
             this.TripsRepository = tripsRepository;

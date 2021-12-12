@@ -12,10 +12,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BluBluCar.DataAccessLayer\TWS.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\TWS.BusinessLogicLayer\TWS.BusinessLogicLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

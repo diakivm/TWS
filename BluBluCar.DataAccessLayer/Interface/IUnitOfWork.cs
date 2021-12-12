@@ -10,7 +10,7 @@ namespace TWS.DataAccessLayer.Interface
 {
     public interface IUnitOfWork
     {
-        ITripsRepository TripsRepository { get; }
+        ITripRepository TripsRepository { get; }
         ITravelerAccountRepository TravelerAccountRepository { get; }
         IDriverAccountRepository DriverAccountRepository { get; }
         Task SaveChangesAsync();

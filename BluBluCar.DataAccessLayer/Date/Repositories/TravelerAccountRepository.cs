@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TWS.DataAccessLayer.Entities;
+using TWS.DataAccessLayer.Exceptions;
 using TWS.DataAccessLayer.Interface.Repositories;
 using TWS.DataAccessLayer.TWSContext;
 
@@ -17,9 +18,17 @@ namespace TWS.DataAccessLayer.Date.Repositories
         {
         }
 
-        public async Task<IEnumerable<TravelerAccount>> GetTravelersAccountByTripAsync(Trip trip)
+        public override async Task<TravelerAccount> GetCompleteEntityAsync(int id)
         {
-            return await this._table.Where(p => p.PlannedTrips.Contains(trip))
+            var traveler = await this._table.Include(u => u.UserAccount)
+                                            .Include(t => t.PlannedTrips)
+                                            .SingleOrDefaultAsync(t => t.Id == id);
+            return traveler ?? throw new EntityNotFoundException(GetEntityNotFoundErrorMessage(id));
+        }
+
+        public async Task<IEnumerable<TravelerAccount>> GetTravelersAccountByTripAsync(int id)
+        {
+            return await this._table.Where(p => p.PlannedTrips.Any(t => t.Id == id))
                                     .Include(u => u.UserAccount)
                                     .ToListAsync();
         }

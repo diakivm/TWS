@@ -9,6 +9,6 @@ namespace TWS.DataAccessLayer.Interface.Repositories
 {
     public interface ITravelerAccountRepository : IRepository<TravelerAccount>
     {
-        Task<IEnumerable<TravelerAccount>> GetTravelersAccountByTripAsync(Trip trip);
+        Task<IEnumerable<TravelerAccount>> GetTravelersAccountByTripAsync(int id);
     }
 }

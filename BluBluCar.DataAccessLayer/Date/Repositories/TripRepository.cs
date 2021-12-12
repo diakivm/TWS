@@ -2,21 +2,26 @@
 using Aplication.DataAccess.Interface.Repositories;
 using Microsoft.EntityFrameworkCore;
 using TWS.DataAccessLayer.TWSContext;
-using TWS.DataAccessLayer.Parameters;
+using TWS.DataAccessLayer.Exceptions;
 
 namespace Aplication.DataAccess.Date.Repositories
 {
-    public class TripsRepository : GenericRepository<Trip>, ITripsRepository
+    public class TripRepository : GenericRepository<Trip>, ITripRepository
     {
-        public TripsRepository(TWSDBContext databaseContext)
+        public TripRepository(TWSDBContext databaseContext)
             : base(databaseContext)
         {
         }
 
-        public async Task<IEnumerable<Trip>> GetTripsByParametersAsync(TripParameters parameters)
+        public override async Task<Trip> GetCompleteEntityAsync(int id)
         {
-            return await this._table.Where(t => t.PlaceOfDeparture == parameters.PlaceOfDeparture && t.PlaceOfArrival == parameters.PlaceOfArrival)
-                                    .ToListAsync();
+            var trip = await this._table.Include(d => d.DriverAccount)
+                                        .ThenInclude(u => u.UserAccount)
+                                        .Include(t => t.TravelerAccount)
+                                        .ThenInclude(u => u.UserAccount)
+                                        .SingleOrDefaultAsync(t => t.Id == id);
+
+            return trip ?? throw new EntityNotFoundException(GetEntityNotFoundErrorMessage(id));
         }
 
         public async Task<IEnumerable<Trip>> GetTripsPlannedByTravelerAsync(int idTravelerAccount)

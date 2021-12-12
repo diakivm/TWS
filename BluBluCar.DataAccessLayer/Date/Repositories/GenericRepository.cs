@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TWS.DataAccessLayer.Entities.Base;
+using TWS.DataAccessLayer.Exceptions;
 using TWS.DataAccessLayer.Interface.Repositories;
 using TWS.DataAccessLayer.TWSContext;
 
@@ -10,7 +11,6 @@ namespace Aplication.DataAccess.Date.Repositories
         protected readonly TWSDBContext _dbContext;
         protected readonly DbSet<TEntity> _table;
 
-        public bool AutoSaveChanges { get; set; } = true;
 
         public GenericRepository(TWSDBContext dbContext)
         {
@@ -18,34 +18,30 @@ namespace Aplication.DataAccess.Date.Repositories
             this._table = this._dbContext.Set<TEntity>();
         }
 
-        public virtual IQueryable<TEntity> GetSet => this._table;
+        public abstract Task<TEntity> GetCompleteEntityAsync(int id);
 
-        public async Task<TEntity> GetAsync(int id) => await GetSet.SingleOrDefaultAsync(i => i.Id == id);
+        public virtual async Task<IEnumerable<TEntity>> GetAsync() => await _table.ToListAsync();
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public virtual async Task<TEntity> GetByIdAsync(int id)
         {
-            if (entity is null) throw new ArgumentNullException(nameof(entity));
-              _dbContext.Entry(entity).State = EntityState.Added;
-            if (AutoSaveChanges)
-                await _dbContext.SaveChangesAsync();
-
-            return entity;
+            return await _table.FindAsync(id)
+                ?? throw new EntityNotFoundException(
+                    GetEntityNotFoundErrorMessage(id));
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public virtual async Task AddAsync(TEntity entity) => await _table.AddAsync(entity);
+
+        public virtual async Task UpdateAsync(TEntity entity) =>
+            await Task.Run(() => _table.Update(entity));
+
+        public virtual async Task DeleteAsync(int id)
         {
-            if (entity is null) throw new ArgumentNullException(nameof(entity));
-              _dbContext.Entry(entity).State = EntityState.Modified;
-            if (AutoSaveChanges)
-                await _dbContext.SaveChangesAsync();
+            var entity = await GetByIdAsync(id);
+            await Task.Run(() => _table.Remove(entity));
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            _dbContext.Remove(new TEntity { Id = id });
-            if (AutoSaveChanges)
-                await _dbContext.SaveChangesAsync();
-        }
+        protected static string GetEntityNotFoundErrorMessage(int id) =>
+            $"{typeof(TEntity).Name} with id {id} not found.";
     }
 }
     

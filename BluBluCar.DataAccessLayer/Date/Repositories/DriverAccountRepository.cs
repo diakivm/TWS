@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TWS.DataAccessLayer.Entities;
+using TWS.DataAccessLayer.Exceptions;
 using TWS.DataAccessLayer.Interface.Repositories;
 using TWS.DataAccessLayer.TWSContext;
 
@@ -16,6 +17,16 @@ namespace TWS.DataAccessLayer.Date.Repositories
         public DriverAccountRepository(TWSDBContext dbContext) 
           : base(dbContext)
         {
+        }
+
+        public override async Task<DriverAccount> GetCompleteEntityAsync(int id)
+        {
+            var driver = await this._table.Include(u => u.UserAccount)
+                                          .Include(c => c.Transport)
+                                          .Include(t => t.PublishedTrips)
+                                          .SingleOrDefaultAsync(d => d.Id == id);
+
+            return driver ?? throw new EntityNotFoundException(GetEntityNotFoundErrorMessage(id));
         }
 
         public async Task<IEnumerable<DriverAccount>> GetDriverAccountsByDrivingExperienceAsync(double drivingExperience)
