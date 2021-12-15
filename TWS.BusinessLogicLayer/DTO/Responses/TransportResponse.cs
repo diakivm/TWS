@@ -8,6 +8,7 @@ namespace TWS.BusinessLogicLayer.DTO.Responses
 {
     public class TransportResponse
     {
+        public int Id { get; set; }
         public string CarBrand { get; set; }
         public string CarModel { get; set; }
         public int NumberOfSeats { get; set; }

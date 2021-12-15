@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TWS.DataAccessLayer.Migrations
 {
-    public partial class TWSStart : Migration
+    public partial class _15122021AllDone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -162,9 +162,9 @@ namespace TWS.DataAccessLayer.Migrations
                 columns: new[] { "Id", "DriverAccountForeignKey", "NumberOfFreeSeats", "PlaceOfArrival", "PlaceOfDeparture", "TimeOfArrival", "TimeOfDeparture", "TravelerAccountForeignKey" },
                 values: new object[,]
                 {
-                    { 1, 1, (byte)1, "Lviv", "Chernivtsi", new DateTime(2021, 12, 4, 21, 15, 56, 652, DateTimeKind.Local).AddTicks(259), new DateTime(2021, 12, 4, 18, 15, 56, 615, DateTimeKind.Local).AddTicks(6967), 1 },
-                    { 2, 1, (byte)3, "Ivano-Frankivsk", "Lviv", new DateTime(2021, 12, 6, 21, 15, 56, 652, DateTimeKind.Local).AddTicks(1635), new DateTime(2021, 12, 6, 18, 15, 56, 652, DateTimeKind.Local).AddTicks(1612), null },
-                    { 3, 2, (byte)3, "Kyiw", "Odessa", new DateTime(2021, 12, 6, 18, 15, 56, 652, DateTimeKind.Local).AddTicks(1642), new DateTime(2021, 12, 5, 18, 15, 56, 652, DateTimeKind.Local).AddTicks(1640), null }
+                    { 1, 1, (byte)1, "Lviv", "Chernivtsi", new DateTime(2021, 12, 15, 20, 2, 49, 222, DateTimeKind.Local).AddTicks(9728), new DateTime(2021, 12, 15, 17, 2, 49, 219, DateTimeKind.Local).AddTicks(9405), 1 },
+                    { 2, 1, (byte)3, "Ivano-Frankivsk", "Lviv", new DateTime(2021, 12, 17, 20, 2, 49, 223, DateTimeKind.Local).AddTicks(1106), new DateTime(2021, 12, 17, 17, 2, 49, 223, DateTimeKind.Local).AddTicks(1082), null },
+                    { 3, 2, (byte)3, "Kyiw", "Odessa", new DateTime(2021, 12, 17, 17, 2, 49, 223, DateTimeKind.Local).AddTicks(1113), new DateTime(2021, 12, 16, 17, 2, 49, 223, DateTimeKind.Local).AddTicks(1111), null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -41,7 +41,7 @@ namespace TWS.DataAccessLayer.Migrations
                     b.HasIndex("UserAccountForeignKey")
                         .IsUnique();
 
-                    b.ToTable("DriverAccounts", (string)null);
+                    b.ToTable("DriverAccounts");
 
                     b.HasData(
                         new
@@ -87,7 +87,7 @@ namespace TWS.DataAccessLayer.Migrations
                     b.HasIndex("DriverAccountForeignKey")
                         .IsUnique();
 
-                    b.ToTable("Transports", (string)null);
+                    b.ToTable("Transports");
 
                     b.HasData(
                         new
@@ -127,7 +127,7 @@ namespace TWS.DataAccessLayer.Migrations
                     b.HasIndex("UserAccountForeignKey")
                         .IsUnique();
 
-                    b.ToTable("TravelerAccounts", (string)null);
+                    b.ToTable("TravelerAccounts");
 
                     b.HasData(
                         new
@@ -183,7 +183,7 @@ namespace TWS.DataAccessLayer.Migrations
 
                     b.HasIndex("TravelerAccountForeignKey");
 
-                    b.ToTable("Trips", (string)null);
+                    b.ToTable("Trips");
 
                     b.HasData(
                         new
@@ -193,8 +193,8 @@ namespace TWS.DataAccessLayer.Migrations
                             NumberOfFreeSeats = (byte)1,
                             PlaceOfArrival = "Lviv",
                             PlaceOfDeparture = "Chernivtsi",
-                            TimeOfArrival = new DateTime(2021, 12, 4, 21, 15, 56, 652, DateTimeKind.Local).AddTicks(259),
-                            TimeOfDeparture = new DateTime(2021, 12, 4, 18, 15, 56, 615, DateTimeKind.Local).AddTicks(6967),
+                            TimeOfArrival = new DateTime(2021, 12, 15, 20, 2, 49, 222, DateTimeKind.Local).AddTicks(9728),
+                            TimeOfDeparture = new DateTime(2021, 12, 15, 17, 2, 49, 219, DateTimeKind.Local).AddTicks(9405),
                             TravelerAccountForeignKey = 1
                         },
                         new
@@ -204,8 +204,8 @@ namespace TWS.DataAccessLayer.Migrations
                             NumberOfFreeSeats = (byte)3,
                             PlaceOfArrival = "Ivano-Frankivsk",
                             PlaceOfDeparture = "Lviv",
-                            TimeOfArrival = new DateTime(2021, 12, 6, 21, 15, 56, 652, DateTimeKind.Local).AddTicks(1635),
-                            TimeOfDeparture = new DateTime(2021, 12, 6, 18, 15, 56, 652, DateTimeKind.Local).AddTicks(1612)
+                            TimeOfArrival = new DateTime(2021, 12, 17, 20, 2, 49, 223, DateTimeKind.Local).AddTicks(1106),
+                            TimeOfDeparture = new DateTime(2021, 12, 17, 17, 2, 49, 223, DateTimeKind.Local).AddTicks(1082)
                         },
                         new
                         {
@@ -214,8 +214,8 @@ namespace TWS.DataAccessLayer.Migrations
                             NumberOfFreeSeats = (byte)3,
                             PlaceOfArrival = "Kyiw",
                             PlaceOfDeparture = "Odessa",
-                            TimeOfArrival = new DateTime(2021, 12, 6, 18, 15, 56, 652, DateTimeKind.Local).AddTicks(1642),
-                            TimeOfDeparture = new DateTime(2021, 12, 5, 18, 15, 56, 652, DateTimeKind.Local).AddTicks(1640)
+                            TimeOfArrival = new DateTime(2021, 12, 17, 17, 2, 49, 223, DateTimeKind.Local).AddTicks(1113),
+                            TimeOfDeparture = new DateTime(2021, 12, 16, 17, 2, 49, 223, DateTimeKind.Local).AddTicks(1111)
                         });
                 });
 
@@ -259,7 +259,7 @@ namespace TWS.DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new

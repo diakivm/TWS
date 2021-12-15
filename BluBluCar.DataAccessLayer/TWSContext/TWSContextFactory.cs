@@ -15,16 +15,8 @@ namespace TWS.DataAccessLayer
         public TWSDBContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TWSDBContext>();
-
-            // получаем конфигурацию из файла appsettings.json
-            ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("appsettings.json");
-            IConfigurationRoot config = builder.Build();
-
-            // получаем строку подключения из файла appsettings.json
-            string connectionString = config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(connectionString);
+         
+            optionsBuilder.UseSqlServer("Server=DESKTOP-U45QJ4E\\SQLEXPRESS; Database=TWS;Trusted_Connection=True;");
             return new TWSDBContext(optionsBuilder.Options);
         }
     }

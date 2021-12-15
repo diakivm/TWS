@@ -11,5 +11,9 @@ namespace TWS.BusinessLogicLayer.Interfaces.Services
     {
         Task<IEnumerable<TravelerAccountResponse>> GetAsync();
         Task<TravelerAccountResponse> GetByIdAsync(int id);
+
+        Task InsertAsync(TravelerAccountRequest request);
+        Task UpdateAsync(TravelerAccountRequest request);
+        Task DeleteAsync(int id);
     }
 }

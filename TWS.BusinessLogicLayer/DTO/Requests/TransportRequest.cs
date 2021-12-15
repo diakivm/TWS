@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TWS.BusinessLogicLayer.DTO.Responses
 {
-    public class TravelerAccountResponse
+    public class TransportRequest
     {
         public int Id { get; set; }
-        public int TravelExperience { get; set; }
-
-        public UserResponse UserAccount { get; set; }
-        public IEnumerable<TripResponse> PlannedTrips { get; set; }
+        public string CarBrand { get; set; }
+        public string CarModel { get; set; }
+        public int NumberOfSeats { get; set; }
     }
 }

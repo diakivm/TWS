@@ -8,23 +8,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using TWS;
+using TWS.BusinessLogicLayer.Data;
+using TWS.BusinessLogicLayer.Registration;
 using TWS.Data;
+using TWS.DataAccessLayer.TWSContext;
 
 namespace BluBluCar
 {
-    public partial class App
+    public partial class App : Application
     {
-        public static Window ActiveWindow => Application.Current.Windows
-               .OfType<Window>()
-               .FirstOrDefault(w => w.IsActive);
-
-        public static Window FocusedWindow => Application.Current.Windows
-           .OfType<Window>()
-           .FirstOrDefault(w => w.IsFocused);
-
-        public static Window CurrentWindow => FocusedWindow ?? ActiveWindow;
-
-        public static bool IsDesignTime { get; private set; } = true;
 
         private static IHost __Host;
 
@@ -35,11 +27,12 @@ namespace BluBluCar
 
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
            .AddDatabase(host.Configuration.GetSection("Database"))
+           .AddMapper()
+           .AddServices()
         ;
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            IsDesignTime = false;
 
             var host = Host;
 

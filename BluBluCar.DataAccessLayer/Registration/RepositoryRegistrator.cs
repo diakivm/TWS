@@ -14,11 +14,13 @@ namespace TWS.DataAccessLayer.TWSContext
     public static class RepositoryRegistrator
     {
         public static IServiceCollection AddRepositoriesInDB(this IServiceCollection services) => services
-           .AddTransient<IRepository<Trip>, TripRepository>()
            .AddTransient<IRepository<DriverAccount>, DriverAccountRepository>()
+            .AddTransient<IRepository<User>, UserRepository>()
+           .AddTransient<IRepository<Transport>, TransportRepository>()
            .AddTransient<IRepository<TravelerAccount>, TravelerAccountRepository>()
-           .AddTransient<IRepository<Transport>, GenericRepository<Transport>>()
-           .AddTransient<IRepository<User>, GenericRepository<User>>()
+           .AddTransient<IRepository<Trip>, TripRepository>()
+           
+
         ;
     }
 }

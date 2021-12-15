@@ -15,8 +15,6 @@ namespace TWS.DataAccessLayer.TWSContext
         public TWSDBContext(DbContextOptions<TWSDBContext> options)
               : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

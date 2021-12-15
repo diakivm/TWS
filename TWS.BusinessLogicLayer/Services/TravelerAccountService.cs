@@ -34,6 +34,25 @@ namespace TWS.BusinessLogicLayer.Services
             return mapper.Map<TravelerAccount, TravelerAccountResponse>(travelerAccount);
         }
 
+        public async Task InsertAsync(TravelerAccountRequest request)
+        {
+            var travelerAccount = mapper.Map<TravelerAccountRequest, TravelerAccount>(request);
+            await travelerAccountRepository.AddAsync(travelerAccount);
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(TravelerAccountRequest request)
+        {
+            var travelerAccount = mapper.Map<TravelerAccountRequest, TravelerAccount>(request);
+            await travelerAccountRepository.UpdateAsync(travelerAccount);
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await travelerAccountRepository.DeleteAsync(id);
+            await unitOfWork.SaveChangesAsync();
+        }
 
         public TravelerAccountService(IUnitOfWork unitOfWork, IMapper mapper)
         {

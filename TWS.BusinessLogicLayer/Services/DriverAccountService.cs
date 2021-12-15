@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TWS.BusinessLogicLayer.DTO.Requests;
 using TWS.BusinessLogicLayer.DTO.Responses;
 using TWS.BusinessLogicLayer.Interfaces.Services;
 using TWS.DataAccessLayer.Entities;
@@ -28,6 +29,25 @@ namespace TWS.BusinessLogicLayer.Services
             return mapper.Map<DriverAccount, DriverAccountResponse>(driverAccount);
         }
 
+        public async Task InsertAsync(DriverAccountRequest request)
+        {
+            var driverAccount = mapper.Map<DriverAccountRequest, DriverAccount>(request);
+            await driverAccountRepository.AddAsync(driverAccount);
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(DriverAccountRequest request)
+        {
+            var driverAccount = mapper.Map<DriverAccountRequest, DriverAccount>(request);
+            await driverAccountRepository.UpdateAsync(driverAccount);
+            await unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await driverAccountRepository.DeleteAsync(id);
+            await unitOfWork.SaveChangesAsync();
+        }
 
         public DriverAccountService(IUnitOfWork unitOfWork, IMapper mapper)
         {

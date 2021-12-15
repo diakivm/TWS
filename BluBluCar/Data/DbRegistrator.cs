@@ -31,7 +31,6 @@ namespace TWS.Data
             })
            .AddTransient<DbInitializer>()
            .AddRepositoriesInDB()
-           .AddAutoMapper()
         ;
     }
 }

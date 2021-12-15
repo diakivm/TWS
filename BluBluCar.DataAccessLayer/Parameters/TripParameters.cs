@@ -4,17 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TWS.BusinessLogicLayer.DTO.Responses
+namespace TWS.DataAccessLayer.Parameters
 {
-    public class TripResponse
+    public class TripParameters
     {
-        public int Id { get; set; }
         public string PlaceOfDeparture { get; set; }
         public string PlaceOfArrival { get; set; }
         public DateTime TimeOfDeparture { get; set; }
         public DateTime TimeOfArrival { get; set; }
-        public byte NumberOfFreeSeats { get; set; }
-
-        public DriverAccountResponse DriverAccount { get;set; }
+        public byte NumberOfFNeededSeats { get; set; }
     }
 }
