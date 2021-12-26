@@ -15,8 +15,9 @@ namespace TWS.DataAccessLayer.TWSContext
         public TWSDBContext(DbContextOptions<TWSDBContext> options)
               : base(options)
         {
-        }
 
+        }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfig());

@@ -15,6 +15,7 @@ namespace TWS.BusinessLogicLayer.Registration
           .AddTransient<ITripService, TripService>()
           .AddTransient<IDriverAccountService, DriverAccountService>()
           .AddTransient<ITravelerAccountService, TravelerAccountService>()
+          .AddTransient<IUserService, UserService>()
        ;
     }
 }

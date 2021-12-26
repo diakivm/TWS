@@ -15,12 +15,10 @@ namespace TWS.DataAccessLayer.TWSContext
     {
         public static IServiceCollection AddRepositoriesInDB(this IServiceCollection services) => services
            .AddTransient<IRepository<DriverAccount>, DriverAccountRepository>()
-            .AddTransient<IRepository<User>, UserRepository>()
+           .AddTransient<IRepository<User>, UserRepository>()
            .AddTransient<IRepository<Transport>, TransportRepository>()
            .AddTransient<IRepository<TravelerAccount>, TravelerAccountRepository>()
            .AddTransient<IRepository<Trip>, TripRepository>()
-           
-
         ;
     }
 }

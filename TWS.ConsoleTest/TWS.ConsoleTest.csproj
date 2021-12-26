@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BluBluCar.DataAccessLayer\TWS.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\TWS.BusinessLogicLayer\TWS.BusinessLogicLayer.csproj" />
   </ItemGroup>
 
 </Project>

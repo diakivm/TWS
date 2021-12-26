@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TWS.MVVM.View;
+using TWS.MVVM.ViewModels;
 
 namespace BluBluCar
 {
@@ -23,6 +25,49 @@ namespace BluBluCar
         public MainWindow()
         {
             InitializeComponent();
+        }
+        private void ButtonFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ListViewMenu.SelectedIndex;
+            MoveCursorMenu(index);
+
+            switch (index)
+            {
+                case 0:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new SearchView());
+                    break;
+                case 1:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new CreateTripView());
+                    break;
+                case 2:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new UserTripsView());
+                    break;
+                case 3:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new ProfileView());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void MoveCursorMenu(int index)
+        {
+            TrainsitionigContentSlide.OnApplyTemplate();
+            GridCursor.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
         }
     }
 }

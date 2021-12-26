@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="TWS.MVVM.View.Components.TripCom"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TWS.MVVM.View.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="260">
+    <Grid Margin="5">
+        <Rectangle HorizontalAlignment="Center" Height="140" VerticalAlignment="Center" Width="250" RadiusX="20" RadiusY="20" Fill="#FF5EB1F6"/>
+        <StackPanel Margin="0,7,0,6">
+            <StackPanel Height="96" Width="238" Orientation="Horizontal">
+                <StackPanel Height="69" Width="53" VerticalAlignment="Stretch">
+                    <TextBlock Height="13" TextWrapping="Wrap" Width="26" FontSize="10" Text="12:30"/>
+                    <TextBlock Height="10" TextWrapping="Wrap" Width="26" FontSize="8" Margin="0,15,0,15"><Run Text="2"/><Run Language="ru-ru" Text=" "/><Run Text="год"/></TextBlock>
+                    <TextBlock Height="13" TextWrapping="Wrap" Width="26" FontSize="10" Text="14:30"/>
+                </StackPanel>
+                <StackPanel Height="52" Width="144" Margin="5,0,0,0">
+                    <TextBlock Height="13" TextWrapping="Wrap" FontSize="10"><Run Language="uk-ua" Text="Чернівці"/></TextBlock>
+                    <TextBlock Height="10" TextWrapping="Wrap" Width="26" FontSize="8" Margin="0,5,0,10" Text=""/>
+                    <TextBlock Height="13" TextWrapping="Wrap" FontSize="10"><Run Language="uk-ua" Text="Львів"/></TextBlock>
+                </StackPanel>
+                <StackPanel Height="70" Width="36">
+                    <TextBlock Height="13" TextWrapping="Wrap" FontSize="10"><Run Language="uk-ua" Text="200 ₴"/></TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="31" Width="236" Orientation="Horizontal">
+                <Ellipse Height="25" Width="25" Fill="#FFBEBEBE" Margin="10,0,0,0"/>
+                <TextBlock Height="14" TextWrapping="Wrap" Text="User" Width="116" FontSize="10" Margin="5,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+        <Path Data="M-369.3,26.1 L-368.9,90.1" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="65" Margin="53,22,0,0" Stroke="Black" Stretch="Fill" VerticalAlignment="Top" Width="1"/>
+
+    </Grid>
+</UserControl>

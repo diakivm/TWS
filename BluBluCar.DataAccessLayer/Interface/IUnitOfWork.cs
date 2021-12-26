@@ -13,6 +13,7 @@ namespace TWS.DataAccessLayer.Interface
         ITripRepository TripsRepository { get; }
         ITravelerAccountRepository TravelerAccountRepository { get; }
         IDriverAccountRepository DriverAccountRepository { get; }
+        IUserRepository UserRepository { get; }
         Task SaveChangesAsync();
     }
 }

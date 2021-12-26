@@ -10,6 +10,9 @@ using Aplication.DataAccess.Date.Repositories;
 using TWS.DataAccessLayer.Date.Repositories;
 using TWS.DataAccessLayer.Interface.Entity;
 using TWS.DataAccessLayer.Entities;
+using TWS.BusinessLogicLayer.Services;
+using TWS.BusinessLogicLayer.Configuration;
+using AutoMapper;
 
 var optionsBuilder = new DbContextOptionsBuilder<TWSDBContext>();
 
@@ -19,7 +22,7 @@ var options = optionsBuilder.UseSqlServer("Server=DESKTOP-U45QJ4E\\SQLEXPRESS;Da
 using (var db = new TWSDBContext(options))
 {
 
-    IUnitOfWork unitOfWork = new UnitOfWork(db, new TripRepository(db), new TravelerAccountRepository(db), new DriverAccountRepository(db));
+    IUnitOfWork unitOfWork = new UnitOfWork(db, new TripRepository(db), new TravelerAccountRepository(db), new DriverAccountRepository(db), new UserRepository(db));
 
     unitOfWork.TripsRepository.DeleteAsync(1);
 
@@ -31,19 +34,19 @@ using (var db = new TWSDBContext(options))
         Console.WriteLine($"{item.PlaceOfDeparture} {item.PlaceOfArrival} {item.Id}");
 
 
- /*
-    Console.WriteLine("==============================================================");
+    /*
+       Console.WriteLine("==============================================================");
 
-    var tripsPlanedByTraveler = unitOfWork.TripsRepository.GetTripsPlannedByTravelerAsync(1);
+       var tripsPlanedByTraveler = unitOfWork.TripsRepository.GetTripsPlannedByTravelerAsync(1);
 
-    foreach (var item in tripsPlanedByTraveler.Result)
-        Console.WriteLine($"{item.PlaceOfDeparture} {item.PlaceOfArrival}");
+       foreach (var item in tripsPlanedByTraveler.Result)
+           Console.WriteLine($"{item.PlaceOfDeparture} {item.PlaceOfArrival}");
 
-    Console.WriteLine("==============================================================");
+       Console.WriteLine("==============================================================");
 
-    var asd = unitOfWork.DriverAccountRepository.GetDriverAccountsBySeetsOfCarAsync(2);
+       var asd = unitOfWork.DriverAccountRepository.GetDriverAccountsBySeetsOfCarAsync(2);
 
-    foreach (var item in asd.Result)
-        Console.WriteLine($"{item.DriverExperience} {item.UserAccount.FirstName} {item.Transport.CarBrand}");
- */
+       foreach (var item in asd.Result)
+           Console.WriteLine($"{item.DriverExperience} {item.UserAccount.FirstName} {item.Transport.CarBrand}");
+    */
 }

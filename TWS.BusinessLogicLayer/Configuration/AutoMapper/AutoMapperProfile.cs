@@ -14,8 +14,6 @@ namespace TWS.BusinessLogicLayer.Configuration
     public class AutoMapperProfile : Profile
     {
 
-        private readonly IServiceCollection asd;
-
         private void CreateTripMaps()
         {
             CreateMap<Trip, TripResponse>();
